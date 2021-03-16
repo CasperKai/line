@@ -273,10 +273,15 @@ public class HelloController {
 
     private void handleTextContent(String replyToken, Event event, TextMessageContent content) throws IOException {
         String text = content.getText();
-        String helpText = "You can input the following messages to see each results:\n(0)help,\n(1)profile,\n(2)bye,\n(3)confirm,\n(4)buttons,\n(5)carousel,\n(6)imagemap.";
+//        String helpText = "You can input the following messages to see each results:\n(0)help,\n(1)profile,\n(2)bye,\n(3)confirm,\n(4)buttons,\n(5)carousel,\n(6)imagemap.";
+        String helpText = getUserName(event.getSource().getUserId()) + "! 歡迎使用員工自助查詢";
 
         log.info("Got text message from {}: {}", replyToken, text);
         switch (text) {
+            case "你好":
+                String txt = getUserName(event.getSource().getUserId()) + " 你好!";
+                this.replyText(replyToken, txt);
+                break;
             case "readme": case "0": {
                 this.replyText(replyToken, helpText);
                 break;
