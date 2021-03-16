@@ -279,7 +279,47 @@ public class HelloController {
         log.info("Got text message from {}: {}", replyToken, text);
         switch (text) {
             case "你好":
-                String txt = getUserName(event.getSource().getUserId()) + " 你好!";
+                //String txt = getUserName(event.getSource().getUserId()) + " 你好!";
+                String txt = "{" +
+                        "  replyToken: event.reply_token," +
+                        "  messages: [" +
+                        "    {" +
+                        "      type: flex," +
+                        "      altText: Flex Message," +
+                        "      contents: {" +
+                        "        type: carousel," +
+                        "        contents: [" +
+                        "          {" +
+                        "            type: bubble," +
+                        "            body: {" +
+                        "              type: box," +
+                        "              layout: vertical," +
+                        "              contents: [" +
+                        "                {" +
+                        "                  type: text," +
+                        "                  text: First bubble" +
+                        "                }" +
+                        "              ]" +
+                        "            }" +
+                        "          }," +
+                        "          {" +
+                        "            type: bubble," +
+                        "            body: {" +
+                        "              type: box," +
+                        "              layout: vertical," +
+                        "              contents: [" +
+                        "                {" +
+                        "                  type: text," +
+                        "                  text: Second bubble" +
+                        "                }" +
+                        "              ]" +
+                        "            }" +
+                        "          }" +
+                        "        ]" +
+                        "      }" +
+                        "    }" +
+                        "  ]" +
+                        "}";
                 this.replyText(replyToken, txt);
                 break;
             case "readme": case "0": {
